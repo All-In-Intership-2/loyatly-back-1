@@ -1,42 +1,35 @@
 const { DataTypes, Model } = require('sequelize');
 const { connection } = require('../Database');
+const { Company } = require('../company');
+const { User } = require('../user');
 
-class User extends Model {}
+class Employee extends Model {}
 
-User.init({
+Employee.init({
 	id: {
 		type: DataTypes.INTEGER, 
 		allowNull: false,
 		autoIncrement:  true,
 		primaryKey: true 
 	},
-	fullName: {
+	userId: {
 		type: DataTypes.STRING, 
 		allowNull: false
 	},
-	email: {
+  companyId: {
 		type: DataTypes.STRING, 
 		allowNull: false
 	},
-	phoneNumber:  {
+  role: {
 		type: DataTypes.STRING, 
-		allowNull: false
-	},
-	password: {
-		type: DataTypes.STRING, 
-		allowNull: false
-	},
-	role: {
-		type: DataTypes.ENUM("admin","user"), 
-		allowNull: false
-	},
-	status: {
-		type: DataTypes.ENUM("active","passive","pending"), 
 		allowNull: false
 	}
 }, {
   sequelize: connection,
-  modelName: 'Users'
+  modelName: 'Employees'
 });
 
-module.exports = User;
+Employee.belongsTo(User, { foreignKey: 'userId' });
+Employee.belongsTo(Company, { foreignKey: 'companyId' });
+
+module.exports = Employee;
