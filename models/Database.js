@@ -12,6 +12,7 @@ const connect = async () => {
   try {
     await seqConnection.authenticate();
     await seqConnection.sync();
+    console.log('Connection has been established successfully.')
   } catch (err) {
     throw new Error(err);
   }
@@ -19,3 +20,4 @@ const connect = async () => {
 
 module.exports.connection = seqConnection;
 module.exports.connect = connect;
+

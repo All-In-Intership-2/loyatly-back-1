@@ -34,6 +34,14 @@ User.init({
 		type: DataTypes.ENUM("active","passive","pending"), 
 		allowNull: false
 	}
+	// resetLink:{
+	// type:DataTypes.STRING,
+	// allowNull:false
+	// }
+	// linkattempts:{
+	// 	type:Datatypes.Number,
+
+	// }
 }, {
   sequelize: connection,
   modelName: 'Users'
